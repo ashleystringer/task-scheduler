@@ -1,27 +1,35 @@
-import { useState } from 'react';
-import { Button } from "react-bootstrap";
+import { useState, useEffect } from 'react';
 import { useTasks } from "./contexts/TasksProvider";
+import Task from "./components/Task";
+import CreateTask from "./components/CreateTask";
 
 function App() {
-  const { createTask } = useTasks();
+  const { tasks } = useTasks();
+  const [tasksExist, setTasksExist] = useState(false);
 
-  function handleClick(){
-    console.log("Click");
+  useEffect(() => {
+    
+    if(tasks){
+      console.log("Tasks exist.");
+    }else{
+      console.log("Tasks do not exist.");
+    }
 
-    const data = {
-      title: "Title for task",
-      group: "Group for task",
-      priority: "Priority for task"
-    };
-
-    createTask(data);
-  }
+    setTasksExist(prevState => {
+      if (tasks) return true;
+      return false;
+    })
+  }, [tasks]);
 
   return (
     <div className="App">
         App
         <br/>
-        <Button onClick={handleClick}>Click</Button>
+        {tasksExist && tasks.data.map((task, i) => {
+          return (<><Task task={task} key={i}/></>);
+        })}
+
+        <br/>
     </div>
   )
 }

@@ -9,7 +9,7 @@ export function useTasks(){
 
 export function TasksProvider({children}) {
     
-    const [tasks, setTasks] = useState();
+    const [tasks, setTasks] = useState(null);
 
     console.log("TasksProvider");
 
@@ -34,14 +34,44 @@ export function TasksProvider({children}) {
                     console.log(response);
                 })
                 .catch(err => {
-                    console.error(err.response);
+                    console.error(err);
                 })
+    }
+
+    function getTask(taskId){
+        axios
+            .get(`http://localhost:5000/tasks/${taskId}`)
+                .then(response)
+                .catch(err => {
+                    console.error(err);
+                });        
+    }
+
+    function deleteTask(taskId){
+        axios
+            .delete(`http://localhost:5000/tasks/${taskId}`)
+                .then(response)
+                .catch(err => {
+                    console.error(err);
+                });
+    }
+
+    function updateTask(taskId){
+        axios
+        .put(`http://localhost:5000/tasks/${taskId}`)
+            .then(response)
+            .catch(err => {
+                console.error(err);
+            });
     }
 
     const value = {
         tasks,
         setTasks,
-        createTask
+        getTask,
+        createTask,
+        deleteTask,
+        updateTask
     }
     return (
         <TasksContext.Provider value={value}>

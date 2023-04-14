@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
 
 //GET ONE TASK
 router.get("/:id", async (req, res, next) => {
+  console.log("GET /id:");
   console.log(req.params.id);
   try {
     const task = await Task.findById(req.params.id);
@@ -43,10 +44,12 @@ router.post("/", async (req, res, next) => {
 
 //DELETE ONE TASK
 router.delete("/:id", async (req, res, next) => {
+  console.log("DELETE /:id");
+
   try {
     const task = await Task.findById(req.params.id);
 
-    task.remove();
+    await task.deleteOne(task);
 
     res.status(200).json({ success: true, data: {} });
   } catch (err) {
@@ -55,9 +58,14 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 //UPDATE ONE TASK
-router.put(":/id", async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
+  console.log("UPDATE /:id");
+
   try {
-    await Task.findByIdAndUpdate(req.params.id);
+    await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
 
     res.status(500).json({ success: true });
   } catch (err) {
