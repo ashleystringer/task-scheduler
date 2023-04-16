@@ -6,7 +6,7 @@ const Task = require("../models/Task");
 router.get("/", async (req, res, next) => {
   try {
     const tasks = await Task.find();
-    console.log(tasks);
+    //console.log(tasks);
     res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ msg: err });
@@ -36,7 +36,8 @@ router.post("/", async (req, res, next) => {
   console.log(req.body.title);
   try {
     const task = await Task.create(req.body);
-    res.status(200).json(task);
+    const tasks = await Task.find();
+    res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ msg: err });
   }
@@ -50,8 +51,10 @@ router.delete("/:id", async (req, res, next) => {
     const task = await Task.findById(req.params.id);
 
     await task.deleteOne(task);
+    const tasks = await Task.find();
 
-    res.status(200).json({ success: true, data: {} });
+    //res.status(200).json({ success: true, data: {} });
+    res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ msg: err });
   }
@@ -67,7 +70,8 @@ router.put("/:id", async (req, res, next) => {
       runValidators: true
     });
 
-    res.status(500).json({ success: true });
+    const tasks = await Task.find();
+    res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ msg: err });
   }

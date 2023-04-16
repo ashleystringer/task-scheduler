@@ -15,16 +15,27 @@ export function TasksProvider({children}) {
 
 
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/tasks")
-                .then(response => {
-                    console.log(response);
-                    setTasks(response);
-                })
-                .catch(err => {
-                    console.error(err);
-                });
+            retrieveAllData();
     }, []);
+
+    useEffect(() => {
+        console.log("Tasks useEffect hook");
+    }, [tasks]);
+
+    function retrieveAllData(){
+        console.log("retrieveAllData");
+        axios
+        .get("http://localhost:5000/tasks")
+            .then(response => {
+                console.log(response);
+                setTasks(response);
+            })
+            .catch(err => {
+                console.error(err);
+            }); //ISSUE - the app isn't re-rendering with the change in Task state
+
+            //!!!! Clean up the effect later. !!!!
+    }
 
     function createTask(data){
         console.log(data);
@@ -32,10 +43,11 @@ export function TasksProvider({children}) {
             .post("http://localhost:5000/tasks", data)
                 .then(response => {
                     console.log(response);
+                    setTasks(response);
                 })
                 .catch(err => {
                     console.error(err);
-                })
+                });
     }
 
     function getTask(taskId){
@@ -50,16 +62,21 @@ export function TasksProvider({children}) {
     function deleteTask(taskId){
         axios
             .delete(`http://localhost:5000/tasks/${taskId}`)
-                .then(response)
+                .then(response => {
+                    setTasks(response);
+                })
                 .catch(err => {
                     console.error(err);
                 });
+        console.log("deleted Task");
     }
 
-    function updateTask(taskId){
+    function updateTask(taskId, data){
         axios
-        .put(`http://localhost:5000/tasks/${taskId}`)
-            .then(response)
+        .put(`http://localhost:5000/tasks/${taskId}`, data)
+            .then(response => {
+                setTasks(response);
+            })
             .catch(err => {
                 console.error(err);
             });

@@ -21,6 +21,12 @@ export default function CreateTask() {
 
         createTask(data);
 
+        //if successful, clear the refs
+
+        titleRef.current.value = "";
+        groupRef.current.value = "";
+        priorRef.current.value = "";
+
     }
 
     return (

@@ -13,14 +13,14 @@ export default function DeleteTaskModal({ taskId }) {
     function handleDelete(e){
 
         console.log(`taskId: ${taskId}`);
-        //deleteTasks(taskId);
+        deleteTask(taskId);
 
         handleClose();
     }
 
     return (
         <>
-            <Button onClick={handleShow}>Modal Button</Button>
+            <Button onClick={handleShow}>Delete Task</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header>
                     Header
