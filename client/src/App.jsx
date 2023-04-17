@@ -1,5 +1,6 @@
 import ViewAllTasks from "./components/ViewAllTasks";
 import CreateTask from "./components/CreateTask";
+import CreateTaskModal from "./components/CreateTaskModal";
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
     <div className="App">
         <ViewAllTasks/>
         <br/>
-        <CreateTask/>
+        <CreateTaskModal/>
     </div>
   )
 }

@@ -19,6 +19,8 @@ export default function CreateTask() {
             priority: priorRef.current.value
         };
 
+        console.log(data);
+
         createTask(data);
 
         //if successful, clear the refs
@@ -38,11 +40,17 @@ export default function CreateTask() {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Group</Form.Label>
-                    <Form.Control type="text" ref={groupRef} required/>
+                    <Form.Control type="text" ref={groupRef}/>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Priority</Form.Label>
-                    <Form.Control type="text" ref={priorRef} required/>
+                    <Form.Select ref={priorRef} required>
+                        <option>Select priority</option>
+                        <option value="low">Low</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="high">High</option>
+                        <option value="very high">Very High</option>
+                    </Form.Select>
                 </Form.Group>
                 <Button type="submit">Submit</Button>
             </Form>

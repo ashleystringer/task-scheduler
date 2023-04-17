@@ -5,6 +5,7 @@ import { useTasks } from "../contexts/TasksProvider";
 export default function UpdateTaskModal({task}) {
 
     const [show, setShow] = useState(false);
+    const [selectedOpt, setSelectedOpt] = useState(false);
 
     const { updateTask } = useTasks();
     const titleRef = useRef(task.title);
@@ -32,6 +33,10 @@ export default function UpdateTaskModal({task}) {
         handleClose();
     }
 
+    /*
+        !!!! Find a way to have an option selected by default
+    */
+
     return (
         <>
             <Button onClick={handleShow}>Update Task</Button>
@@ -49,7 +54,12 @@ export default function UpdateTaskModal({task}) {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Priority</Form.Label>
-                            <Form.Control ref={priorRef} defaultValue={task.priority}/>                            
+                            <Form.Select ref={priorRef} required>
+                                <option value="low">Low</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="high">High</option>
+                                <option value="very high">Very High</option>
+                            </Form.Select>                        
                         </Form.Group>
                     </Form>
                 </Modal.Body>

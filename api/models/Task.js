@@ -7,8 +7,12 @@ const TaskSchema = new mongoose.Schema({
   },
   group: {
     type: String,
-    required: true
+    default: "N/A"
   },
+  /*
+    - no group
+    - custom group
+  */
   /*
   group: {
     type: mongoose.Schema.ObjectId,
@@ -23,8 +27,23 @@ const TaskSchema = new mongoose.Schema({
   */
   priority: {
     type: String,
+    enum: ["low", "moderate", "high", "very high"],
     required: true
   }
+  /*
+  - low
+  - moderate
+  - high
+  - very high
+  */
+
+  /*
+  schedule: {
+    type: mongoose,Schema.ObjectId,
+    ref: "Schedule",
+    required: false
+  }
+  */
 });
 
 module.exports = mongoose.model("Task", TaskSchema);
