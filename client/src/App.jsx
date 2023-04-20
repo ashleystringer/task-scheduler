@@ -1,15 +1,20 @@
+import { Container } from "react-bootstrap";
 import ViewAllTasks from "./components/ViewAllTasks";
-import CreateTask from "./components/CreateTask";
 import CreateTaskModal from "./components/CreateTaskModal";
+import { Routes } from "react-router-dom"
 
 function App() {
 
   return (
-    <div className="App">
-        <ViewAllTasks/>
+    <Container className="d-flex">
+        <Container>
+          <ViewAllTasks/>
+        </Container>
         <br/>
-        <CreateTaskModal/>
-    </div>
+        <Container>
+          <CreateTaskModal/>
+        </Container>
+    </Container>
   )
 }
 

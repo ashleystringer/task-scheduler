@@ -54,7 +54,7 @@ export default function UpdateTaskModal({task}) {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Priority</Form.Label>
-                            <Form.Select ref={priorRef} required>
+                            <Form.Select ref={priorRef} defaultValue={task.priority} required>
                                 <option value="low">Low</option>
                                 <option value="moderate">Moderate</option>
                                 <option value="high">High</option>
