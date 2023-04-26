@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import { useTasks } from "../contexts/TasksProvider";
 
-export default function DeleteTaskModal({ taskId }) {
+export default function DeleteTaskModal({ task }) {
     
     const [show, setShow] = useState(false);
     const { deleteTask } = useTasks();
@@ -13,7 +13,7 @@ export default function DeleteTaskModal({ taskId }) {
     function handleDelete(e){
 
         console.log(`taskId: ${taskId}`);
-        deleteTask(taskId);
+        deleteTask(task._id);
 
         handleClose();
     }

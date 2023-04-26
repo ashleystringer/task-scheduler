@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Button, Form, Container } from 'react-bootstrap';
 import { useTasks } from "../contexts/TasksProvider";
+import Calendar from "react-calendar";
 
 export default function CreateTask() {
 
@@ -35,7 +36,7 @@ export default function CreateTask() {
         <Container>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Label>Title</Form.Label>
+                    <Form.Label>Titlel</Form.Label>
                     <Form.Control type="text" ref={titleRef} required/>
                 </Form.Group>
                 <Form.Group>
@@ -51,6 +52,9 @@ export default function CreateTask() {
                         <option value="high">High</option>
                         <option value="very high">Very High</option>
                     </Form.Select>
+                </Form.Group>
+                <Form.Group>
+                   Calendar
                 </Form.Group>
                 <Button type="submit">Submit</Button>
             </Form>

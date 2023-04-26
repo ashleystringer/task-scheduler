@@ -17,6 +17,7 @@ export default function Schedule() {
                 - While still being displayed in the UI by hours
             - Probably using Flex and/or Grid
             - Scheduled tasks are color-coded by category.
+            - 
         - (The user doesn't have to select a time for tasks.)
     */
 

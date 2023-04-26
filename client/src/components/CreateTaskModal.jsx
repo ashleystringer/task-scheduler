@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Modal, Button, Form } from "react-bootstrap";
 import { useTasks } from "../contexts/TasksProvider";
+import Calendar from "react-calendar";
 
 export default function CreateTaskModal() {
 
@@ -56,6 +57,9 @@ export default function CreateTaskModal() {
                                     <option value="high">High</option>
                                     <option value="very high">Very High</option>
                                 </Form.Select>
+                            </Form.Group>
+                            <Form.Group>
+                                <Calendar/>
                             </Form.Group>
                             <Button onClick={handleClose}>Close</Button>
                             <Button onClick={handleCreate}>Submit</Button>

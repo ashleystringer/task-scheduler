@@ -25,8 +25,10 @@ export default function Task({ task }) {
         <div>
             Task ID: {task._id}
             <br/>
+            Title: {task.title}
+            <br/>
             <UpdateTaskModal task={task}/>
-            <DeleteTaskModal taskId={task._id}/>
+            <DeleteTaskModal taskId={task}/>
         </div>
     )
 }

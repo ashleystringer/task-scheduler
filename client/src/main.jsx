@@ -4,6 +4,7 @@ import App from './App'
 import { BrowserRouter } from "react-router-dom";
 import { TasksProvider } from "./contexts/TasksProvider";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-calendar/dist/Calendar.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
